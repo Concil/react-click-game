@@ -1,4 +1,4 @@
-import {entity, PrimaryKey, Reference, uuid, UUID} from "@deepkit/type";
+import {BackReference, entity, PrimaryKey, Reference, uuid, UUID} from "@deepkit/type";
 import {Difficulty} from "../enums/difficulty";
 import {Item} from "./item";
 
@@ -11,7 +11,7 @@ export class Job {
     description: string;
     difficulty: Difficulty = Difficulty.LOW;
     reward: number = 0;
-    requirements: Item[] & Reference;
+    requirements: Item[] & BackReference;
 }
 
 @entity.name('user_jobs')
