@@ -1,0 +1,23 @@
+{
+  "name": "click-game",
+  "author": {
+    "name": "Florian Schmidt",
+    "url": "https://devflo.de"
+  },
+  "scripts": {
+    "start": "ts-node src/app.ts server:start"
+  },
+  "dependencies": {
+    "@deepkit/event": "^1.0.1-alpha.97",
+    "@deepkit/framework": "^1.0.1-alpha.99",
+    "@deepkit/http": "^1.0.1-alpha.98",
+    "@deepkit/mysql": "^1.0.1-alpha.98",
+    "@deepkit/orm": "^1.0.1-alpha.98",
+    "@deepkit/type": "^1.0.1-alpha.97",
+    "reflect-metadata": "^0.1.13",
+    "ts-node": "^10.9.1"
+  },
+  "devDependencies": {
+    "@deepkit/type-compiler": "^1.0.1-alpha.97"
+  }
+}
