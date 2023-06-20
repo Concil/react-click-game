@@ -136,7 +136,7 @@ export function PageCraft() {
                             let isSelected = selectedItem.find((sItem) => sItem.id === item.id);
 
                             return <tr style={{
-                                backgroundColor: (isSelected ? 'red' : '')
+                                backgroundColor: (isSelected ? '#860000' : '')
                             }}
                             >
                                 <td>
