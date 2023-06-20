@@ -6,12 +6,15 @@ import {Item} from "./item";
 export class Blackmarket {
     id: UUID & PrimaryKey = uuid();
 
-    user?: User & Reference; //wenn undefined dann ist nutzer root;
-    item: Item & Reference;
+    user?: User & Reference;
+    item!: Item & Reference;
+    condition: number = 0.9;
     amount: number = 1;
     price: number = 0;
 
     created: Date = new Date();
+    activeAt: Date = new Date();
+    deleteAt?: Date; //if assigned, delete item at given date
 }
 
 /** als Verlauf gedacht */
@@ -19,11 +22,11 @@ export class Blackmarket {
 export class UserBlackmarket {
     id: UUID & PrimaryKey = uuid();
 
-    boughtUser: User & Reference;
-    item: Item & Reference;
+    boughtUser?: User & Reference;
+    item!: Item & Reference;
     amount: number = 1;
     price: number = 0;
 
-    user: User & Reference;
+    user!: User & Reference;
     created: Date = new Date();
 }

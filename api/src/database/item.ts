@@ -1,16 +1,26 @@
-import {entity, PrimaryKey, uuid, UUID} from "@deepkit/type";
+import {BackReference, entity, Maximum, PrimaryKey, uuid, UUID} from "@deepkit/type";
 import {Rarity} from "../enums/rarity";
+import {Craft} from "./craft";
 
+export enum ItemTypes {
+    HARDWARE,
+    BOOST,
+    BOX,
+}
 
 @entity.name('items')
 export class Item {
     id: UUID & PrimaryKey = uuid();
 
-    name: string;
-    description: string;
+    type: ItemTypes = ItemTypes.HARDWARE;
+
+    name!: string;
+    title: string = "";
+    description: string = "";
     rarity: Rarity = Rarity.COMMON; //Die Seltenheitsstufe des Items
 
     price: number = 1;
+    offer: number & Maximum<100> = 0; //max 100 (%)
 
     attack: number = 0; //Der Damage bei angriffen
     defense: number = 0; //Verteidigungen bei Angriffen
@@ -27,4 +37,6 @@ export class Item {
     stackSize: number = 0;
 
     created: Date = new Date();
+
+    craft?: Craft[] & BackReference;
 }

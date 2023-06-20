@@ -6,8 +6,10 @@ import {Item} from "./item";
 export class InventoryItem {
     id: UUID & PrimaryKey = uuid();
 
-    user: User & Reference;
-    item: Item & Reference;
+    user!: User & Reference;
+    item!: Item & Reference;
 
-    amount: number = 0;
+    condition: number = 0; // 0 = Kaputt / Sehr schlecht 1 = Fabrikneu
+
+    created: Date = new Date();
 }

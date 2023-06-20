@@ -2,7 +2,7 @@ import {Database} from "@deepkit/orm";
 import {httpWorkflow, JSONResponse} from "@deepkit/http";
 import {eventDispatcher} from "@deepkit/event";
 
-export class SecretRouteListeners {
+export class CORSHTTPListener {
 
     constructor(
         protected database: Database

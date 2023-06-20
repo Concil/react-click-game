@@ -13,9 +13,18 @@
     "@deepkit/http": "^1.0.1-alpha.98",
     "@deepkit/mysql": "^1.0.1-alpha.98",
     "@deepkit/orm": "^1.0.1-alpha.98",
+    "@deepkit/rpc": "^1.0.1-alpha.97",
+    "@deepkit/rpc-tcp": "^1.0.1-alpha.97",
     "@deepkit/type": "^1.0.1-alpha.97",
+    "@types/bcrypt": "^5.0.0",
+    "@types/date-fns": "^2.6.0",
+    "bcrypt": "^5.1.0",
+    "date-fns": "^2.30.0",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
     "reflect-metadata": "^0.1.13",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.1",
+    "ws": "^8.13.0"
   },
   "devDependencies": {
     "@deepkit/type-compiler": "^1.0.1-alpha.97"

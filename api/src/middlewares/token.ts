@@ -1,6 +1,7 @@
 import {HttpMiddleware, HttpNotFoundError, HttpRequest, HttpResponse} from "@deepkit/http";
 import {Database} from "@deepkit/orm";
-import {UserToken} from "../database/user";
+import {RpcControllerAccess, RpcKernelSecurity, Session} from "@deepkit/rpc";
+import {UserSession} from "../database/user";
 
 export class TokenChecker implements HttpMiddleware {
     allowedURLs: string[] = [
@@ -17,7 +18,7 @@ export class TokenChecker implements HttpMiddleware {
                 // @ts-ignore
                 const bodyToken = request.body.token;
 
-                const token = await this.database.query(UserToken).filter({
+                const token = await this.database.query(UserSession).filter({
                     id: bodyToken
                 }).findOneOrUndefined();
                 if ( !token ) throw new HttpNotFoundError("token invalid");
@@ -25,5 +26,50 @@ export class TokenChecker implements HttpMiddleware {
         }
 
         next();
+    }
+}
+
+export class RPCSecurity extends RpcKernelSecurity {
+
+    constructor(protected database: Database) {
+        super();
+    }
+
+    async hasControllerAccess(session: Session, controllerAccess: RpcControllerAccess): Promise<boolean> {
+        console.log('hasControllerAccess', session.token, session.username);
+        return true;
+    }
+
+
+    async isAllowedToRegisterAsPeer(session: Session, peerId: string): Promise<boolean> {
+        console.log('isAllowedToRegisterAsPeer')
+        return true;
+    }
+
+    async isAllowedToSendToPeer(session: Session, peerId: string): Promise<boolean> {
+        const userSession = await this.database.query(UserSession).filter({
+            id: session.token
+        }).joinWith("user").findOneOrUndefined();
+
+        if ( !userSession ) return false;
+        console.log('isAllowedToSendToPeer:', session.token, userSession.user.username);
+        return true;
+    }
+
+    async authenticate(token: string): Promise<Session> {
+        const session = await this.database.query(UserSession).filter({
+            id: token
+        }).joinWith("user").findOneOrUndefined();
+
+        if ( !session ) return undefined;
+
+        console.log('authenticated:', token, 'with:', session.user.username);
+
+        return new Session(session.user.username, token);
+    }
+
+    transformError(err: Error) {
+        console.log('transformError')
+        return err;
     }
 }
