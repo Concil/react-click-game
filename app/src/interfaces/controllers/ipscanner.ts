@@ -1,4 +1,4 @@
-import {IPScan} from "../ipscan";
+import {IPScan} from "../database/ipscan";
 
 
 export interface IPScannerController {

@@ -31,18 +31,10 @@ import {
 import {useIdle, useInterval} from "@mantine/hooks";
 import Logo from '../pngegg.png';
 import {RpcWebSocketClient} from "@deepkit/rpc";
-import {UserController} from "../interfaces/controllers/user";
 import {UserWidget} from "./userWidget";
+import {User} from "../interfaces/database/user";
+import {GENERAL} from "../config/general";
 import {RPC} from "../interfaces/rpc";
-import {User} from "../interfaces/user";
-import {getShort} from "../utils/number";
-import {InventoryController} from "../interfaces/controllers/inventory";
-import {BlackmarketController} from "../interfaces/controllers/blackmarket";
-import {MENU} from "../core/menu";
-import {ca} from "date-fns/locale";
-import {IPScannerController} from "../interfaces/controllers/ipscanner";
-import {BankController} from "../interfaces/controllers/bank";
-import {ItemController} from "../interfaces/controllers/item";
 
 
 export function LayoutGame() {
@@ -109,14 +101,7 @@ export function LayoutGame() {
             const client = new RpcWebSocketClient('ws://localhost:8080');
             client.token.set(token);
 
-            const rpc: RPC = {
-                user: client.controller<UserController>('user'),
-                inventory: client.controller<InventoryController>("inventory"),
-                market: client.controller<BlackmarketController>("blackmarket"),
-                ipscan: client.controller<IPScannerController>("ipscanner"),
-                bank: client.controller<BankController>("bank"),
-                item: client.controller<ItemController>("item"),
-            }
+            const rpc: RPC = GENERAL.buildRPC(client);
 
             setClient(rpc);
 

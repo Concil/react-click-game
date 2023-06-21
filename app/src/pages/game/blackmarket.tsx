@@ -2,11 +2,11 @@ import {useEffect, useState} from "react";
 import {useOutletContext} from "react-router-dom";
 import {RPC} from "../../interfaces/rpc";
 import {Badge, Button, Container, Group, Image, Table, Text, Title} from "@mantine/core";
-import {Blackmarket} from "../../interfaces/blackmarket";
+import {Blackmarket} from "../../interfaces/database/blackmarket";
 import {notifications} from "@mantine/notifications";
 import {getItemImagePath, getItemPrice} from "../../utils/item";
 import {useInterval} from "@mantine/hooks";
-import {RarityLabels} from "../../interfaces/item";
+import {RarityLabels} from "../../interfaces/database/item";
 import {getConditionText} from "../../utils/number";
 
 

@@ -1,10 +1,10 @@
 import axios, {AxiosError} from "axios";
+import {GENERAL} from "../config/general";
 
 export enum RequestMethod {
     GET = "get",
     POST = "post"
 }
-
 
 export class APIErrors {
     constructor(
@@ -23,8 +23,6 @@ export class APIError {
 
 
 export class API {
-    static URL: string = "http://localhost:8080/";
-
 
     static async request<T>(type: RequestMethod, url: string, data?: any, noToken: boolean = false): Promise<T | APIError> {
 
@@ -37,11 +35,11 @@ export class API {
 
         const dataReal = Object.assign(dataSend, data);
 
-        console.log('[API.REQUEST]', API.URL + url, dataReal);
+        console.log('[API.REQUEST]', GENERAL.API_URL + url, dataReal);
         try {
             result = await axios({
                 method: type,
-                url: API.URL + url,
+                url: GENERAL.API_URL + url,
                 data: dataReal
             });
 

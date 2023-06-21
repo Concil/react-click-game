@@ -1,6 +1,6 @@
-import {User} from "../user";
-import {InventoryItem} from "../inventory";
-import {Hack} from "../hack";
+import {User} from "../database/user";
+import {InventoryItem} from "../database/inventory";
+import {Hack} from "../database/hack";
 
 
 export interface UserController {

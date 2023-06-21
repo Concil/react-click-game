@@ -2,7 +2,7 @@ import {Button, Container, Group, Image, Stack, Table, Title} from "@mantine/cor
 import {useOutletContext} from "react-router-dom";
 import {RPC} from "../../interfaces/rpc";
 import {useEffect, useState} from "react";
-import {Bank} from "../../interfaces/bank";
+import {Bank} from "../../interfaces/database/bank";
 import {getItemImagePath} from "../../utils/item";
 import {useInterval} from "@mantine/hooks";
 

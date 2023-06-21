@@ -2,12 +2,12 @@ import {Badge, Button, Group, Image, Stack, Table, Title} from "@mantine/core";
 import {useOutletContext} from "react-router-dom";
 import {RPC} from "../../interfaces/rpc";
 import {useEffect, useState} from "react";
-import {Blackmarket} from "../../interfaces/blackmarket";
+import {Blackmarket} from "../../interfaces/database/blackmarket";
 import {useInterval} from "@mantine/hooks";
-import {Hack} from "../../interfaces/hack";
+import {Hack} from "../../interfaces/database/hack";
 import {type} from "os";
 import {getItemImagePath} from "../../utils/item";
-import {RarityLabels} from "../../interfaces/item";
+import {RarityLabels} from "../../interfaces/database/item";
 import {getConditionText} from "../../utils/number";
 import {formatDateTime} from "../../utils/date";
 

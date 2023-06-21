@@ -2,7 +2,7 @@ import {Button, Card, Grid, Group, Image, Stack, Title} from "@mantine/core";
 import {useOutletContext} from "react-router-dom";
 import {RPC} from "../../interfaces/rpc";
 import {useEffect, useState} from "react";
-import {Item, ItemTypes} from "../../interfaces/item";
+import {Item, ItemTypes} from "../../interfaces/database/item";
 import {useInterval} from "@mantine/hooks";
 import {getItemImagePath, getItemPrice} from "../../utils/item";
 import {notifications} from "@mantine/notifications";

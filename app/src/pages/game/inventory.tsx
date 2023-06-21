@@ -1,10 +1,10 @@
 import {Badge, Button, Grid, Group, Image, Table, Text, Title} from "@mantine/core";
 import {useEffect, useState} from "react";
-import {InventoryItem} from "../../interfaces/inventory";
+import {InventoryItem} from "../../interfaces/database/inventory";
 import {useOutletContext} from "react-router-dom";
 import {RPC} from "../../interfaces/rpc";
 import {getItemImagePath, getItemPrice} from "../../utils/item";
-import {ItemTypes, RarityLabels} from "../../interfaces/item";
+import {ItemTypes, RarityLabels} from "../../interfaces/database/item";
 import {modals} from "@mantine/modals";
 import {notifications} from "@mantine/notifications";
 import {getConditionText} from "../../utils/number";

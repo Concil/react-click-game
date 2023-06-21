@@ -15,7 +15,7 @@ import {
 import {useOutletContext} from "react-router-dom";
 import {RPC} from "../../interfaces/rpc";
 import {useEffect, useState} from "react";
-import {InventoryItem} from "../../interfaces/inventory";
+import {InventoryItem} from "../../interfaces/database/inventory";
 import {getItemImagePath} from "../../utils/item";
 import {notifications} from "@mantine/notifications";
 import {modals} from "@mantine/modals";

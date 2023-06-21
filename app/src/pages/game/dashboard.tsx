@@ -7,10 +7,10 @@ import {getRandomUserAgent} from "../../utils/string";
 import {BlackMarketWidget} from "../../components/widgets/blackmarket";
 import {useOutletContext} from "react-router-dom";
 import {RPC} from "../../interfaces/rpc";
-import {User} from "../../interfaces/user";
+import {User} from "../../interfaces/database/user";
 import {modals} from "@mantine/modals";
 import {notifications} from "@mantine/notifications";
-import {Hack} from "../../interfaces/hack";
+import {Hack} from "../../interfaces/database/hack";
 
 //
 

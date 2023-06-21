@@ -4,7 +4,7 @@ import {IconClockStop, IconHash} from "@tabler/icons-react";
 import React, {useEffect, useRef, useState} from "react";
 import {useOutletContext} from "react-router-dom";
 import {RPC} from "../../interfaces/rpc";
-import {IPScan} from "../../interfaces/ipscan";
+import {IPScan} from "../../interfaces/database/ipscan";
 import {useInterval} from "@mantine/hooks";
 import {randomIP} from "../../utils/number";
 import {notifications} from "@mantine/notifications";

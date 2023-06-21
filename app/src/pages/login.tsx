@@ -2,7 +2,7 @@ import {Button, Container, Input, Stack} from "@mantine/core";
 import {IconAt} from "@tabler/icons-react";
 import {useEffect, useRef, useState} from "react";
 import {API, APIError, APIErrors, RequestMethod} from "../core/api";
-import {UserSession} from "../interfaces/user";
+import {UserSession} from "../interfaces/database/user";
 import {useNavigate} from "react-router-dom";
 
 

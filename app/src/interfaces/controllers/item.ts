@@ -1,5 +1,5 @@
-import {Item, ItemTypes} from "../item";
-import {InventoryItem} from "../inventory";
+import {Item, ItemTypes} from "../database/item";
+import {InventoryItem} from "../database/inventory";
 
 
 export interface ItemController {

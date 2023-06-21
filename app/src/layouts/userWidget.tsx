@@ -9,7 +9,7 @@ import {
 } from '@tabler/icons-react';
 import { UnstyledButton, Group, Avatar, Text, Box, useMantineTheme, rem, Menu } from '@mantine/core';
 import {useOutletContext} from "react-router-dom";
-import {User} from "../interfaces/user";
+import {User} from "../interfaces/database/user";
 import {RPC} from "../interfaces/rpc";
 
 export function UserWidget(props: {rpc: RPC}) {

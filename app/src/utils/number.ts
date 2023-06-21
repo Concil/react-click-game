@@ -1,4 +1,4 @@
-import {ItemTypes} from "../interfaces/item";
+import {ItemTypes} from "../interfaces/database/item";
 
 
 export function getShort(number: number): string {

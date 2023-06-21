@@ -1,4 +1,4 @@
-import {InventoryItem} from "../inventory";
+import {InventoryItem} from "../database/inventory";
 
 export interface InventoryController {
     all(userId: string): Promise<InventoryItem[] | undefined>;

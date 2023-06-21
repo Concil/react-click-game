@@ -1,4 +1,4 @@
-import {Bank} from "../bank";
+import {Bank} from "../database/bank";
 
 
 export interface BankController {
