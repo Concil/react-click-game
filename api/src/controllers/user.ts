@@ -3,7 +3,6 @@ import {rpc} from "@deepkit/rpc";
 import {User, UserSession} from "../database/user";
 import {compare, hashSync} from "bcrypt";
 import {addHours} from "date-fns";
-import {Config} from "../app";
 import {http, HttpBody, HttpQuery} from "@deepkit/http";
 import {Email, MinLength, unpopulatedSymbol} from "@deepkit/type";
 import {RequestError} from "../models/error";
@@ -12,6 +11,7 @@ import {InventoryItem} from "../database/inventory";
 import {Item, ItemTypes} from "../database/item";
 import {Hack} from "../database/hack";
 import {UserSkill} from "../database/skill";
+import { Config } from "../config/general";
 
 interface Auth {
     username: string & MinLength<4>;
@@ -35,12 +35,12 @@ export class UserController {
         const user = await this.database.query(User).filter({
             username: username
         }).findOneOrUndefined();
-        if ( !user ) return;
+        if ( !user ) return console.log('user not found');
 
         const skill = await this.database.query(UserSkill).filter({
             user: user
         }).findOneOrUndefined();
-        if ( !skill ) return;
+        if ( !skill ) return console.log('skill not found');
 
         const nHack = new Hack();
         nHack.user = user;
