@@ -8,8 +8,6 @@ import {BlackMarketWidget} from "../../components/widgets/blackmarket";
 import {useOutletContext} from "react-router-dom";
 import {RPC} from "../../interfaces/rpc";
 import {User} from "../../interfaces/database/user";
-import {modals} from "@mantine/modals";
-import {notifications} from "@mantine/notifications";
 import {Hack} from "../../interfaces/database/hack";
 
 //
@@ -66,18 +64,18 @@ export function Dashboard() {
         <Table striped withBorder withColumnBorders highlightOnHover>
             <thead>
             <tr>
-                <th>User</th>
-                <th>Date</th>
+                <th>Benutzer</th>
+                <th>Datum</th>
                 <th>Agent</th>
                 <th>IP</th>
-                <th>Earning</th>
+                <th>Erhalten</th>
             </tr>
             </thead>
             <tbody>
             {
                 lastHacks.map( (hack, index) => {
                     return <tr key={"hack"+index}>
-                        <td>unknown</td>
+                        <td>unbekannt</td>
                         <td>{formatDateTime(hack.created)}</td>
                         <td>{getRandomUserAgent()}</td>
                         <td>{randomIP()}</td>

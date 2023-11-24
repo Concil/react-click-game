@@ -35,7 +35,7 @@ export function PageBlackMarket() {
             notifications.show({
                 title: 'Error',
                 color: 'red',
-                message: 'item ' + item.item.name + ' is no longer available',
+                message: 'Gegenstand ' + item.item.name + ' ist nicht länger verfügbar',
             });
         }
     }
@@ -75,11 +75,11 @@ export function PageBlackMarket() {
         <Table striped withBorder withColumnBorders highlightOnHover>
             <thead>
             <tr>
-                <th>name</th>
-                <th>price</th>
-                <th>rarity</th>
-                <th>condition</th>
-                <th>action</th>
+                <th>Name</th>
+                <th>Preis</th>
+                <th>Seltenheit</th>
+                <th>Zustand</th>
+                <th>Aktionen</th>
             </tr>
             </thead>
             <tbody>
@@ -101,7 +101,7 @@ export function PageBlackMarket() {
                         <Button
                             variant="subtle"
                             onClick={() => buyItem(item, index)}
-                        >Buy</Button>
+                        >KAUF</Button>
                     </td>
                 </tr>
             })}

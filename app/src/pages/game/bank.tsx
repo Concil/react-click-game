@@ -43,10 +43,10 @@ export function PageBank() {
         <Table striped highlightOnHover>
             <thead>
             <tr>
-                <th>name</th>
-                <th>iban</th>
-                <th>country</th>
-                <th>action</th>
+                <th>Name</th>
+                <th>IBAN</th>
+                <th>Land</th>
+                <th>Aktionen</th>
             </tr>
             </thead>
             <tbody>

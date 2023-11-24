@@ -60,8 +60,8 @@ export function GameHacks() {
         <Table striped highlightOnHover>
             <thead>
             <tr>
-                <th>date</th>
-                <th>price</th>
+                <th>datum</th>
+                <th>gestohlen</th>
             </tr>
             </thead>
             <tbody>

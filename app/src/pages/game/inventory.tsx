@@ -48,10 +48,10 @@ export function PageInventory() {
                 <thead>
                 <tr>
                     <th>name</th>
-                    <th>price</th>
-                    <th>rarity</th>
-                    <th>condition</th>
-                    <th>actions</th>
+                    <th>preis</th>
+                    <th>Seltenheit</th>
+                    <th>Zustand</th>
+                    <th>Aktionen</th>
                 </tr>
                 </thead>
                 <tbody>

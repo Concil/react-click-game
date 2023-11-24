@@ -17,7 +17,6 @@ export function IPScanner() {
     const [modalView, setModalView] = useState(false);
 
     const syncData = useInterval(async () => {
-        console.log('try sync data');
         const token = localStorage.getItem('token');
         if ( !token ) return;
 
@@ -26,7 +25,6 @@ export function IPScanner() {
 
         const dataSync = [...data];
         setScans(dataSync);
-        console.log('synced data');
 
     }, 1500);
 
@@ -67,7 +65,7 @@ export function IPScanner() {
 
         if ( typeof(job) === "string") {
             notifications.show({
-                title: 'Error',
+                title: 'Fehler',
                 color: 'red',
                 message: job,
             });
@@ -90,7 +88,7 @@ export function IPScanner() {
         if ( money !== 0 ) {
             notifications.show({
                 title: 'Scan Hacked',
-                message: "you received " + money + "€ from the scan",
+                message: "Du hast " + money + "€ gestohlen",
             });
         }
     }
@@ -98,7 +96,7 @@ export function IPScanner() {
     return <Stack>
         <Group position={"apart"}>
             <Title>Network Scanner</Title>
-            <Button onClick={() => create(randomIP())}>new job</Button>
+            <Button onClick={() => create(randomIP())}>Neuer Auftrag</Button>
         </Group>
 
         <Modal
@@ -122,7 +120,7 @@ export function IPScanner() {
 
 
                 <Group position={"apart"}>
-                    <Button variant={"outline"} onClick={() => setModalView(false)}>Cancel</Button>
+                    <Button variant={"outline"} onClick={() => setModalView(false)}>Abbrechen</Button>
                     <Button onClick={() => {
                         if ( !ipRef.current ) return;
                         create(ipRef.current.value);
@@ -134,11 +132,11 @@ export function IPScanner() {
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Date</th>
+                    <th>Datum</th>
                     <th>IP</th>
-                    <th>Found</th>
-                    <th>End</th>
-                    <th>Actions</th>
+                    <th>Ports</th>
+                    <th>Status</th>
+                    <th>Aktionen</th>
                 </tr>
             </thead>
             <tbody>
@@ -161,8 +159,8 @@ export function IPScanner() {
                         </Badge>}
                         {endReached(scan.endAt) &&
                             <>
-                                {!scan.found && <Badge color={"red"}>FAILED</Badge>}
-                                {scan.found && <Badge color={"green"}>DONE</Badge>}
+                                {!scan.found && <Badge color={"red"}>Fehler</Badge>}
+                                {scan.found && <Badge color={"green"}>Fertig</Badge>}
                             </>
                         }
                     </th>
