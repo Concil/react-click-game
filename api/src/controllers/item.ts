@@ -28,14 +28,19 @@ export class ItemController {
         const item = await this.database.query(Item).filter({id: itemId}).findOneOrUndefined();
         if ( !item ) return "invalid item";
 
-        if (session.user.money < this.getItemPrice(item.price, 1, item.offer)) return "not enough money";
+        const price = this.getItemPrice(item.price, 1, item.offer);
+
+        if (session.user.money < price) return "not enough money";
 
         const nInvItem = new InventoryItem();
         nInvItem.item = item;
         nInvItem.user = session.user;
         nInvItem.condition = 1;
 
+        session.user.money -= price;
+
         await this.database.persist(nInvItem);
+        await this.database.persist(session.user);
         return nInvItem;
     }
 

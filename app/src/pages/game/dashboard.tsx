@@ -32,7 +32,8 @@ export function Dashboard() {
 
     return <Stack>
         <Title align={"center"} lh={0.5} mt={10}>Willkommen zurück, {user?.username}</Title>
-        <Title align={"center"} lh={0.7} order={2}>a good Day for hacking</Title>
+        <Title align={"center"} lh={0.7} order={2}>ein guter Tag zum Hacken!</Title>
+
         <Grid grow mt={50}>
             <Grid.Col span={2}>
                 <Card radius={"md"} ta={"center"} shadow="lg" p={"lg"}>
@@ -48,7 +49,7 @@ export function Dashboard() {
                         { lastHacks[0] &&
                             <Title align={"center"} order={4}>{formatDateTime(lastHacks[0]?.created)}</Title>
                         }
-                        <Title align={"center"} order={6}>last hack</Title>
+                        <Title align={"center"} order={6}>letzter hack</Title>
                     </Card.Section>
                 </Card>
             </Grid.Col>
@@ -60,7 +61,7 @@ export function Dashboard() {
 
         <BlackMarketWidget />
 
-        <Title mt={50} order={2}>latest hacks</Title>
+        <Title mt={50} order={2}>Letzte Hacks</Title>
         <Table striped withBorder withColumnBorders highlightOnHover>
             <thead>
             <tr>

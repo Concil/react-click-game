@@ -47,7 +47,6 @@ export function PageBlackMarket() {
 
         const data = await rpc.market.all();
         if ( !data ) return;
-        console.log('inventory: ', data);
         setItems(data);
     }, 1500);
 
