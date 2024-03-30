@@ -15,7 +15,7 @@ COPY ./app ./app
 RUN cd api && npm install
 
 # Installiere Frontend-Abhängigkeiten
-RUN cd ../app && npm install
+RUN cd app && npm install
 
 # Kopiere das Start-Skript
 COPY start-both.sh ./start-both.sh
