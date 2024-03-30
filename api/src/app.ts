@@ -15,12 +15,12 @@ import {IPScannerController} from "./controllers/ipscanner";
 import {ItemController} from "./controllers/item";
 import {Config} from "./config/general";
 import {WebSocketService} from "./middlewares/websocket";
+import {HackRPCSecurity} from "./providers/rpcSecurity";
 
 
 const app = new App({
     config: Config,
     listeners: [
-        RPCSecurity,
         CORSHTTPListener,
         UserController,
         BlackmarketController,
@@ -31,12 +31,10 @@ const app = new App({
     ],
     providers: [
         APP_Database,
-        {provide: RpcKernelSecurity, useClass: RPCSecurity, scope: 'rpc'},
+        {provide: HackRPCSecurity, scope: 'rpc'},
         TokenChecker,
-        RPCSecurity
     ],
     controllers: [
-        RPCSecurity,
         AuthController,
         UserController,
         InventoryController,
