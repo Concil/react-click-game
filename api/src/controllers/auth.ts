@@ -1,13 +1,12 @@
 import {http, HttpBody} from "@deepkit/http";
 import {User} from "../database/user";
-import {Database} from "@deepkit/orm";
-
+import {APP_Database} from "../config/database";
 
 
 @http.controller("/auth")
 export class AuthController {
 
-    constructor(protected database: Database) {}
+    constructor(protected database: APP_Database) {}
 
 
     @http.POST("/confirm")

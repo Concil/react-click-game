@@ -1,4 +1,3 @@
-import {Database} from "@deepkit/orm";
 import {rpc} from "@deepkit/rpc";
 import {onServerMainBootstrapDone} from "@deepkit/framework";
 import {eventDispatcher} from "@deepkit/event";
@@ -8,6 +7,7 @@ import {Blackmarket} from "../database/blackmarket";
 import {addHours} from "date-fns";
 import {InventoryItem} from "../database/inventory";
 import {UserSession} from "../database/user";
+import {APP_Database} from "../config/database";
 
 
 @rpc.controller("blackmarket")
@@ -15,7 +15,7 @@ export class BlackmarketController {
     timer: any = undefined;
     deleteTimer: any = undefined;
 
-    constructor(protected database: Database) {}
+    constructor(protected database: APP_Database) {}
 
     @eventDispatcher.listen(onServerMainBootstrapDone)
     onServerStarted() {

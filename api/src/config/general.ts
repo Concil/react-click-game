@@ -13,6 +13,13 @@ import {IPScan} from "../database/ipscan";
 
 
 export class Config {
+    DATABASE_HOST = "localhost";
+    DATABASE_PORT = 3306;
+    DATABASE_USER = "root";
+    DATABASE_PASS = "";
+    DATABASE_NAME = "hacker";
+
+
     secret: string = "4b9a7a24613df27b649c3939ab3e4d8d6f0480a4a1e24b5a960f0c71902a1f26";
 
     databases: any[] = [

@@ -1,15 +1,13 @@
-import {Database} from "@deepkit/orm";
 import {InventoryItem} from "../database/inventory";
 import {UserSession} from "../database/user";
 import {rpc} from "@deepkit/rpc";
 import {Craft} from "../database/craft";
-import {randomNumber} from "../utils/number";
-import {Item} from "../database/item";
+import {APP_Database} from "../config/database";
 
 
 @rpc.controller("inventory")
 export class InventoryController {
-    constructor(protected database: Database) {}
+    constructor(protected database: APP_Database) {}
 
     @rpc.action()
     async all(token: string): Promise<InventoryItem[] | undefined> {

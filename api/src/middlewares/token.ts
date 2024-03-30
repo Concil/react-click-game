@@ -2,6 +2,7 @@ import {HttpMiddleware, HttpNotFoundError, HttpRequest, HttpResponse} from "@dee
 import {Database} from "@deepkit/orm";
 import {RpcControllerAccess, RpcKernelSecurity, Session} from "@deepkit/rpc";
 import {UserSession} from "../database/user";
+import {APP_Database} from "../config/database";
 
 export class TokenChecker implements HttpMiddleware {
     allowedURLs: string[] = [
@@ -9,7 +10,7 @@ export class TokenChecker implements HttpMiddleware {
         "/user/register"
     ]
 
-    constructor(protected database: Database) {}
+    constructor(protected database: APP_Database) {}
 
 
     async execute(request: HttpRequest, response: HttpResponse, next: (err?: any) => void) {

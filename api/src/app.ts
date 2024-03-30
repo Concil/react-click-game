@@ -2,8 +2,7 @@ import 'reflect-metadata';
 import {App} from '@deepkit/app';
 import {FrameworkModule} from '@deepkit/framework';
 import {UserController} from "./controllers/user";
-import {database} from "./config/database";
-import {Database} from "@deepkit/orm";
+import {APP_Database} from "./config/database";
 import {CORSHTTPListener} from "./middlewares/CORS";
 import {RPCSecurity, TokenChecker} from "./middlewares/token";
 import {httpMiddleware} from "@deepkit/http";
@@ -31,7 +30,7 @@ const app = new App({
         WebSocketService
     ],
     providers: [
-        {provide: Database, useValue: database},
+        APP_Database,
         {provide: RpcKernelSecurity, useClass: RPCSecurity, scope: 'rpc'},
         TokenChecker,
         RPCSecurity

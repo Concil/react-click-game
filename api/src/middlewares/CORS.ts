@@ -1,11 +1,11 @@
-import {Database} from "@deepkit/orm";
 import {httpWorkflow, JSONResponse} from "@deepkit/http";
 import {eventDispatcher} from "@deepkit/event";
+import {APP_Database} from "../config/database";
 
 export class CORSHTTPListener {
 
     constructor(
-        protected database: Database
+        protected database: APP_Database
     ) {}
 
     @eventDispatcher.listen(httpWorkflow.onResponse)

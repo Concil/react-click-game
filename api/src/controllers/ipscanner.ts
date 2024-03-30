@@ -1,4 +1,3 @@
-import {Database} from "@deepkit/orm";
 import {rpc} from "@deepkit/rpc";
 import {eventDispatcher} from "@deepkit/event";
 import {onServerMainBootstrapDone} from "@deepkit/framework";
@@ -6,13 +5,14 @@ import {UserSession} from "../database/user";
 import {IPScan} from "../database/ipscan";
 import {addHours} from "date-fns";
 import {randomNumber} from "../utils/number";
+import {APP_Database} from "../config/database";
 
 
 @rpc.controller("ipscanner")
 export class IPScannerController {
     checksTimer: any = undefined;
 
-    constructor(protected database: Database) {}
+    constructor(protected database: APP_Database) {}
 
     @eventDispatcher.listen(onServerMainBootstrapDone)
     onServerStarted() {

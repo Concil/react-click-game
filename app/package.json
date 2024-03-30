@@ -1,7 +1,6 @@
 {
-  "name": "app",
-  "version": "0.1.0",
-  "private": true,
+  "name": "@unfloned/click-game",
+  "version": "0.0.1",
   "dependencies": {
     "@deepkit/rpc": "^1.0.1-alpha.97",
     "@deepkit/type": "^1.0.1-alpha.97",

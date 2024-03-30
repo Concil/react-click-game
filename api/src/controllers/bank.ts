@@ -1,4 +1,3 @@
-import {Database} from "@deepkit/orm";
 import {rpc} from "@deepkit/rpc";
 import {eventDispatcher} from "@deepkit/event";
 import {onServerMainBootstrapDone} from "@deepkit/framework";
@@ -6,6 +5,7 @@ import {Bank} from "../database/bank";
 import {generateCountryCode, generateRandomIBAN, generateRandomNumber} from "../utils/number";
 import {addHours} from "date-fns";
 import {generateBankName} from "../utils/string";
+import {APP_Database} from "../config/database";
 
 
 @rpc.controller("bank")
@@ -13,7 +13,7 @@ export class BankController {
     timer: any = undefined;
     deleteTimer: any = undefined;
 
-    constructor(protected database: Database) {}
+    constructor(protected database: APP_Database) {}
 
     @eventDispatcher.listen(onServerMainBootstrapDone)
     onServerStarted() {

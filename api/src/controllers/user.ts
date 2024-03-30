@@ -1,17 +1,17 @@
-import {Database} from "@deepkit/orm";
 import {rpc} from "@deepkit/rpc";
 import {User, UserSession} from "../database/user";
 import {compare, hashSync} from "bcrypt";
 import {addHours} from "date-fns";
-import {http, HttpBody, HttpQuery} from "@deepkit/http";
-import {Email, MinLength, unpopulatedSymbol} from "@deepkit/type";
+import {http, HttpBody} from "@deepkit/http";
+import {Email, MinLength} from "@deepkit/type";
 import {RequestError} from "../models/error";
 import {generateRandomCode, randomNumber} from "../utils/number";
 import {InventoryItem} from "../database/inventory";
 import {Item, ItemTypes} from "../database/item";
 import {Hack} from "../database/hack";
 import {UserSkill} from "../database/skill";
-import { Config } from "../config/general";
+import {Config} from "../config/general";
+import {APP_Database} from "../config/database";
 
 interface Auth {
     username: string & MinLength<4>;
@@ -26,7 +26,7 @@ interface Register extends Auth {
 export class UserController {
 
     constructor(
-        protected database: Database,
+        protected database: APP_Database,
         protected config: Config
     ) {}
 

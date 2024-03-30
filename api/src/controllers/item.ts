@@ -1,14 +1,14 @@
 import {rpc} from "@deepkit/rpc";
 import {Item, ItemTypes} from "../database/item";
-import {Database} from "@deepkit/orm";
 import {UserSession} from "../database/user";
 import {InventoryItem} from "../database/inventory";
+import {APP_Database} from "../config/database";
 
 
 @rpc.controller("item")
 export class ItemController {
 
-    constructor(protected database: Database) {}
+    constructor(protected database: APP_Database) {}
 
     @rpc.action()
     async getItemsOfType(type: ItemTypes): Promise<Item[]> {
