@@ -6,7 +6,6 @@ import {APP_Database} from "./config/database";
 import {CORSHTTPListener} from "./middlewares/CORS";
 import {RPCSecurity, TokenChecker} from "./middlewares/token";
 import {httpMiddleware} from "@deepkit/http";
-import {RpcKernelSecurity} from "@deepkit/rpc";
 import {AuthController} from "./controllers/auth";
 import {InventoryController} from "./controllers/inventory";
 import {BlackmarketController} from "./controllers/blackmarket";
@@ -15,7 +14,7 @@ import {IPScannerController} from "./controllers/ipscanner";
 import {ItemController} from "./controllers/item";
 import {Config} from "./config/general";
 import {WebSocketService} from "./middlewares/websocket";
-import {HackRPCSecurity} from "./providers/rpcSecurity";
+import {RpcKernelSecurity} from "@deepkit/rpc";
 
 
 const app = new App({
@@ -31,7 +30,7 @@ const app = new App({
     ],
     providers: [
         APP_Database,
-        {provide: HackRPCSecurity, scope: 'rpc'},
+        {provide: RpcKernelSecurity, useClass: RPCSecurity, scope: 'rpc'},
         TokenChecker,
     ],
     controllers: [

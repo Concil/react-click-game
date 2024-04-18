@@ -32,7 +32,7 @@ export class TokenChecker implements HttpMiddleware {
 
 export class RPCSecurity extends RpcKernelSecurity {
 
-    constructor(protected database: Database) {
+    constructor(protected database: APP_Database) {
         super();
     }
 

@@ -35,59 +35,27 @@ import {UserWidget} from "./userWidget";
 import {User} from "../interfaces/database/user";
 import {GENERAL} from "../config/general";
 import {RPC} from "../interfaces/rpc";
+import {useGame} from "../providers/game";
 
 
 export function LayoutGame() {
-    const [webSocket, setWebSocket] = useState<WebSocket>();
-
-    const [client, setClient] = useState<any>();
-    const [user, setUser] = useState<User>();
+    const { rpc, setRPC, user, setUser } = useGame();
     const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 
     const nav = useNavigate();
-    const idle = useIdle(2000);
-
-    /*//Todo: checking fights with websocket
-    const testHackInterval = useInterval(() => {
-        notifications.show({
-            title: 'HACKED',
-            color: 'red',
-            message: 'You successfully hacked 642.512.567.321',
-            withCloseButton: true,
-            autoClose: 4500,
-        });
-    }, 20000);
-    useEffect(() => {
-        testHackInterval.start();
-        return testHackInterval.stop;
-    }, []);
-
-    const testWelcomeInterval = useInterval(() => {
-        notifications.show({
-            title: 'Welcome',
-            color: 'red',
-            message: '[username] new user joined hack.click',
-            withCloseButton: true,
-            autoClose: 4500,
-        });
-    }, 30000);
-    useEffect(() => {
-        testWelcomeInterval.start();
-        return testWelcomeInterval.stop;
-    }, []);*/
+    const idle = useIdle(5000);
 
     const checkData = useInterval(async () => {
-        if ( client ) {
-            const token = localStorage.getItem('token');
-            if ( !token ) return;
-            const rpc = client as RPC;
+        if ( !rpc ) return;
 
-            const data = await rpc.user.getData(token);
-            if ( !data ) return;
-            const newData = {...data};
-            setUser(newData);
-            console.log('checker user data');
-        }
+        const token = localStorage.getItem('token');
+        if ( !token ) return;
+
+        const data = await rpc.user.getData(token);
+        if ( !data ) return;
+
+        const newData = {...data};
+        setUser(newData);
     }, 1500);
 
     useEffect(() => {
@@ -95,21 +63,20 @@ export function LayoutGame() {
         if ( !token ) return nav("/login");
         if ( token.length <= 10 ) return nav("/login");
 
-
-
         try {
             const client = new RpcWebSocketClient('ws://localhost:8080');
             client.token.set(token);
-
             const rpc: RPC = GENERAL.buildRPC(client);
-
-            setClient(rpc);
+            setRPC(rpc);
 
             const getData = async () => {
                 const token = localStorage.getItem('token');
                 if ( !token ) return;
-                console.log(await rpc.user.hello());
-                setUser(await rpc.user.getData(token));
+                //console.log(await rpc.user.hello());
+                const tempUser = await rpc.user.getData(token);
+                if ( !tempUser ) return;
+
+                setUser(tempUser);
             }
             getData();
 
@@ -163,7 +130,7 @@ export function LayoutGame() {
 
                     </Group>
                     <Group>
-                        {client && <UserWidget rpc={client} />}
+                        <UserWidget />
                         <ActionIcon variant="default" onClick={() => nav("/")} size={30}>
                             <IconMessageChatbot size="1rem" />
                         </ActionIcon>
@@ -210,8 +177,6 @@ export function LayoutGame() {
             },
         })}
     >
-        {
-            client && <Outlet context={client} />
-        }
+        <Outlet />
     </AppShell>
 }

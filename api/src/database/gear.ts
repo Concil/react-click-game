@@ -9,10 +9,10 @@ export class Gear {
     name: string = "unknown"; // user can name the server
     ip: string = randomIP(); // user needs an ip Address
 
-    board: InventoryItem & Reference;
-    cpu: InventoryItem & Reference;
-    ram1: InventoryItem & Reference;
+    board?: InventoryItem & Reference;
+    cpu?: InventoryItem & Reference;
     gpu?: InventoryItem & Reference;
+    ram1?: InventoryItem & Reference;
     ram2?: InventoryItem & Reference;
     ram3?: InventoryItem & Reference;
     ram4?: InventoryItem & Reference;

@@ -27,12 +27,16 @@ export class IPScannerController {
             if (scan.endAt < new Date()) continue;
 
             //Todo: check which gear the user have and minimize the randomly
-            let offline = false;
 
-            const randomOffline = randomNumber(0, 5);
+            let offline = false;
             if ( scan.found === 0 ) {
+                const randomOffline = randomNumber(0, 10);
+                console.log('randomOffline:', randomOffline);
                 if ( randomOffline >= 4 && randomOffline <= 5) {
                     offline = true;
+                } else {
+                    scan.found += 1;
+                    await this.database.persist(scan);
                 }
             }
 
@@ -42,13 +46,11 @@ export class IPScannerController {
                 continue;
             }
 
-            if ( scan.found <= 999 ) {
-                const randomlyFound = randomNumber(0, 20);
-                if ( randomlyFound >= 12 && randomlyFound <= 13) {
-                    scan.found++;
+            const randomlyFound = randomNumber(0, 20);
+            if ( randomlyFound >= 12 && randomlyFound <= 13 ) {
+                scan.found++;
 
-                    await this.database.persist(scan);
-                }
+                await this.database.persist(scan);
             }
         }
     }

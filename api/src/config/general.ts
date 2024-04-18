@@ -10,6 +10,8 @@ import {Item} from "../database/item";
 import {Redeem} from "../database/redeem";
 import {Bank} from "../database/bank";
 import {IPScan} from "../database/ipscan";
+import {BankHackers} from "../database/BankHackers";
+import {Gear} from "../database/gear";
 
 
 export class Config {
@@ -40,5 +42,7 @@ export class Config {
         Redeem,
         Bank,
         IPScan,
+        BankHackers,
+        Gear
     ]
 }

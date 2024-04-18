@@ -6,7 +6,8 @@
     "url": "https://devflo.de"
   },
   "scripts": {
-    "start": "ts-node src/app.ts server:start"
+    "start": "ts-node src/app.ts server:start",
+    "dev": "node -r ts-node/register --preserve-symlinks --watch src/app.ts server:start"
   },
   "dependencies": {
     "@deepkit/event": "^1.0.1-alpha.97",

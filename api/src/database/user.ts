@@ -1,4 +1,5 @@
 import {BackReference, entity, PrimaryKey, Reference, uuid, UUID} from "@deepkit/type";
+import {InventoryItem} from "./inventory";
 
 
 @entity.name('users')
@@ -14,6 +15,13 @@ export class User {
     money: number = 0;
     exp: number = 0;
     lastLogin?: Date;
+
+    cpu?: InventoryItem & Reference;
+    gpu?: InventoryItem & Reference;
+    ram1?: InventoryItem & Reference;
+    ram2?: InventoryItem & Reference;
+    ram3?: InventoryItem & Reference;
+    ram4?: InventoryItem & Reference;
 
     confirmed: boolean = false;
     registerCode: string = "";

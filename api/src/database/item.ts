@@ -3,16 +3,19 @@ import {Rarity} from "../enums/rarity";
 import {Craft} from "./craft";
 
 export enum ItemTypes {
-    HARDWARE,
     BOOST,
     BOX,
+    CPU,
+    RAM,
+    GPU,
+    STORAGE
 }
 
 @entity.name('items')
 export class Item {
     id: UUID & PrimaryKey = uuid();
 
-    type: ItemTypes = ItemTypes.HARDWARE;
+    type: ItemTypes = ItemTypes.CPU;
 
     name!: string;
     title: string = "";

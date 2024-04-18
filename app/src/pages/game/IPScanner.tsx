@@ -8,15 +8,18 @@ import {IPScan} from "../../interfaces/database/ipscan";
 import {useInterval} from "@mantine/hooks";
 import {randomIP} from "../../utils/number";
 import {notifications} from "@mantine/notifications";
+import {useGame} from "../../providers/game";
 
 
 export function IPScanner() {
-    const rpc = useOutletContext<RPC>();
+    const { rpc, user, setUser } = useGame();
     const ipRef = useRef<HTMLInputElement>(null);
     const [scans, setScans] = useState<IPScan[] | undefined>();
     const [modalView, setModalView] = useState(false);
 
     const syncData = useInterval(async () => {
+        if ( !rpc ) return;
+
         const token = localStorage.getItem('token');
         if ( !token ) return;
 
@@ -30,6 +33,8 @@ export function IPScanner() {
 
     useEffect(() => {
         const getData = async () => {
+            if ( !rpc ) return;
+
             const token = localStorage.getItem('token');
             if ( !token ) return;
             setScans(await rpc.ipscan.get(token));
@@ -39,7 +44,7 @@ export function IPScanner() {
 
         syncData.start();
         return syncData.stop;
-    })
+    }, [rpc])
 
     const endReached = (date: Date) => {
         return date < new Date();
@@ -50,6 +55,7 @@ export function IPScanner() {
     }
 
     const create = async (ip: string) => {
+        if ( !rpc ) return;
         const token = localStorage.getItem('token');
         if ( !token ) return;
 
@@ -74,6 +80,7 @@ export function IPScanner() {
     }
 
     const stopScan = async (id: string) => {
+        if ( !rpc ) return;
         const token = localStorage.getItem('token');
         if ( !token ) return;
 
@@ -81,6 +88,7 @@ export function IPScanner() {
     }
 
     const hackScan = async (id: string) => {
+        if ( !rpc ) return;
         const token = localStorage.getItem('token');
         if ( !token ) return;
 
@@ -90,6 +98,10 @@ export function IPScanner() {
                 title: 'Scan Hacked',
                 message: "Du hast " + money + "€ gestohlen",
             });
+        }
+        if ( user ) {
+            user.money += money;
+            setUser({...user});
         }
     }
 

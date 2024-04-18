@@ -57,11 +57,6 @@ export class UserController {
     }
 
     @rpc.action()
-    hello() {
-        return "hello from server";
-    }
-
-    @rpc.action()
     async getData(id: string): Promise<User | undefined> {
         if ( !id ) return undefined;
 
@@ -182,7 +177,7 @@ export class UserController {
         }).find();
         if ( items.length === 0 ) return "no items with rarity found";
 
-        const randomItem = items[randomNumber(0, items.length)];
+        const randomItem = items.filter((item) => item.type !== ItemTypes.BOX)[randomNumber(0, items.length - 1)];
         if ( !randomItem ) return "no random item generated";
 
         const inventoryItem = new InventoryItem();
@@ -208,5 +203,32 @@ export class UserController {
         });
         if ( max !== 0 ) queryBuild = queryBuild.limit(max);
         return queryBuild.sort({created: 'DESC'}).find();
+    }
+
+    @rpc.action()
+    async useItem(token: string, itemId: string): Promise<boolean> {
+        const session = await this.database.query(UserSession).filter({
+            id: token
+        }).joinWith("user").findOneOrUndefined();
+        if ( !session ) return false;
+        if ( !session.user ) return false;
+
+        const inventoryItem = await this.database.query(InventoryItem)
+            .filter({id: itemId})
+            .findOneOrUndefined();
+        if ( !inventoryItem ) return false;
+
+        if ( inventoryItem.item.type === ItemTypes.CPU ) {
+            session.user.cpu = inventoryItem;
+        }
+        if ( inventoryItem.item.type === ItemTypes.GPU ) {
+            session.user.gpu = inventoryItem;
+        }
+        if ( inventoryItem.item.type === ItemTypes.RAM ) {
+            //Todo: make this better
+            session.user.ram1 = inventoryItem;
+        }
+
+        return true;
     }
 }

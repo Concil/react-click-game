@@ -70,6 +70,8 @@ export class InventoryController {
             .find();
 
         const inventoryItems: InventoryItem[] = userItems.filter((invItem) => items.includes(invItem.item.id));
+        console.log(inventoryItems);
+
         const requiredItems = inventoryItems.map((invItem) => invItem.item);
 
 

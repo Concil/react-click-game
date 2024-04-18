@@ -11,9 +11,10 @@ import { UnstyledButton, Group, Avatar, Text, Box, useMantineTheme, rem, Menu } 
 import {useOutletContext} from "react-router-dom";
 import {User} from "../interfaces/database/user";
 import {RPC} from "../interfaces/rpc";
+import {useGame} from "../providers/game";
 
-export function UserWidget(props: {rpc: RPC}) {
-    const {rpc} = props;
+export function UserWidget() {
+    const {rpc} = useGame();
     const [user, setUser] = useState<User>();
 
 

@@ -38,6 +38,12 @@ export function PageBank() {
         return syncData.stop;
     }, [])
 
+
+    const onHack = async (id: string) => {
+        //const result = await rpc.bank.hack(id, );
+
+    }
+
     return <Stack>
         <Title order={3}>Bank Accounts</Title>
         <Table striped highlightOnHover>
@@ -58,6 +64,7 @@ export function PageBank() {
                     <td>
                         <Button
                             variant="subtle"
+                            onClick={() => onHack(item.id)}
                         >HACK</Button>
                     </td>
                 </tr>

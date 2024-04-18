@@ -1,29 +1,26 @@
-import {Badge, Button, Group, Image, Stack, Table, Title} from "@mantine/core";
+import {Stack, Table, Title} from "@mantine/core";
 import {useOutletContext} from "react-router-dom";
 import {RPC} from "../../interfaces/rpc";
 import {useEffect, useState} from "react";
-import {Blackmarket} from "../../interfaces/database/blackmarket";
 import {useInterval} from "@mantine/hooks";
 import {Hack} from "../../interfaces/database/hack";
-import {type} from "os";
-import {getItemImagePath} from "../../utils/item";
-import {RarityLabels} from "../../interfaces/database/item";
-import {getConditionText} from "../../utils/number";
 import {formatDateTime} from "../../utils/date";
+import {useGame} from "../../providers/game";
 
 
 export function GameHacks() {
-    const rpc = useOutletContext<RPC>();
+    const {rpc, user} = useGame();
     const [items, setItems] = useState<Hack[]>([]);
 
 
     const syncData = useInterval(async () => {
+        if ( !rpc ) return;
         const token = localStorage.getItem('token');
         if ( !token ) return;
 
+
         const data = await rpc.user.getHacks(token);
         if ( !data ) return;
-
         if ( typeof(data) === "string")
             // Todo notify?
             return;
@@ -34,6 +31,8 @@ export function GameHacks() {
 
     useEffect(() => {
         const getData = async () => {
+            if ( !rpc ) return;
+
             const token = localStorage.getItem('token');
             if ( !token ) return;
 
@@ -52,8 +51,8 @@ export function GameHacks() {
 
 
         syncData.start();
-        return syncData.stop;
-    }, [])
+        return () => syncData.stop();
+    }, [rpc])
 
     return <Stack>
         <Title>Hacks</Title>

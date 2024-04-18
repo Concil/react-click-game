@@ -4,6 +4,7 @@ import {useState} from "react";
 import {Notifications} from "@mantine/notifications";
 import {ModalsProvider} from "@mantine/modals";
 import {mainMenu, MENU} from "./core/menu";
+import {GameProvider} from "./providers/game";
 
 
 function getRoutes(menu: MENU[], master?: MENU) {
@@ -21,20 +22,24 @@ export function Application() {
     const [colorScheme, setColorScheme] = useState<ColorScheme>('dark');
     const toggleColorScheme = (value?: ColorScheme) => setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
 
-    return <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
-        <MantineProvider
-            withGlobalStyles
-            withNormalizeCSS
-            theme={{ colorScheme }}
-        >
-            <ModalsProvider>
-                <Notifications />
-                <BrowserRouter>
-                    <Routes>
-                        {getRoutes(mainMenu)}
-                    </Routes>
-                </BrowserRouter>
-            </ModalsProvider>
-        </MantineProvider>
-    </ColorSchemeProvider>
+    return (
+        <GameProvider>
+            <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
+                <MantineProvider
+                    withGlobalStyles
+                    withNormalizeCSS
+                    theme={{ colorScheme }}
+                >
+                    <ModalsProvider>
+                        <Notifications />
+                        <BrowserRouter>
+                            <Routes>
+                                {getRoutes(mainMenu)}
+                            </Routes>
+                        </BrowserRouter>
+                    </ModalsProvider>
+                </MantineProvider>
+            </ColorSchemeProvider>
+        </GameProvider>
+    )
 }
